@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhyana</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main class="app" id="app">
+
+    <div class="logo">D</div>
+
+    <h1>Dhyana</h1>
+
+    <p class="tagline">
+        Return to what matters.
+    </p>
+<div class="home-card">
+
+    <p class="small-text">TODAY'S PRACTICE</p>
+
+    <h2 id="homeMessage">
+        What matters right now?
+    </h2>
+
+    <div class="home-stats">
+
+        <div>
+            <strong id="homeSessions">0</strong>
+            <span>Today</span>
+        </div>
+
+        <div>
+            <strong id="homeMinutes">0</strong>
+            <span>Minutes</span>
+        </div>
+
+        <div>
+            <strong id="homeStreak">0</strong>
+            <span>Practice streak</span>
+        </div>
+
+    </div>
+
+    <button onclick="showFocusSetup()">
+        🎯 Begin Focus
+    </button>
+
+</div>
+
+    <div class="home-grid">
+
+        <button class="home-option" onclick="showJar()">
+            🫙
+            <span>Good Things</span>
+        </button>
+
+        <button class="home-option" onclick="showCravingMode()">
+            🧍
+            <span>I Want to Scroll</span>
+        </button>
+
+        <button class="home-option" onclick="showProgress()">
+            🌱
+            <span>My Practice</span>
+        </button>
+
+        <button class="home-option" onclick="showBreaks()">
+            🌿
+            <span>Take a Break</span>
+        </button>
+
+    </div>
+
+</main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
