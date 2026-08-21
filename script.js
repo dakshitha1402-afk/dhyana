@@ -1081,7 +1081,7 @@ async function generateInsight() {
     try {
 
         const response = await fetch(
-            "http://localhost:3000/api/insight",
+            "https://dhyana-khaki.vercel.app/api/insight",
             {
                 method: "POST",
 
