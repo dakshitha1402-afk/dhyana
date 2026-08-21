@@ -862,6 +862,8 @@ saveStats(stats);
 function showProgress() {
 
     const stats = getStats();
+    
+    let achievementsHTML = "";
 
     let level = "🌱 Beginning";
 
@@ -1154,6 +1156,7 @@ function updateHomeMessage() {
     if (!message) return;
 
     const stats = getStats();
+    
 
     if (stats.sessions === 0) {
         message.textContent =
