@@ -863,7 +863,7 @@ function showProgress() {
 
     const stats = getStats();
     
-    let achievementsHTML = "";
+   
 
     let level = "🌱 Beginning";
 
