@@ -150,7 +150,7 @@ function getStats() {
         lastPracticeDate: null,
         todaySessions: 0,
 todayMinutes: 0,
-todayDate: nulls
+todayDate: null
     };
 }
 
