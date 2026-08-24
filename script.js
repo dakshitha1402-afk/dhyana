@@ -956,7 +956,11 @@ function showProgress() {
                 <h2>${stats.focusMinutes}</h2>
 
                 <p>💭 Reflections</p>
-                <h2>${stats.reflections}</h2>
+<h2>${stats.reflections}</h2>
+
+<button onclick="showReflections()">
+    📖 My Reflections
+</button>
 
                 <p>🧍 Cravings paused</p>
                 <h2>${stats.cravingsPaused}</h2>
@@ -975,6 +979,123 @@ function showProgress() {
 
             <button onclick="location.reload()">
                 Return to Dhyana
+            </button>
+
+        </div>
+    `;
+}function showReflections() {
+
+    const reflections =
+        JSON.parse(localStorage.getItem("dhyanaReflections")) || [];
+
+    document.querySelector(".app").innerHTML = `
+        <div class="complete-screen">
+
+            <div class="logo">💭</div>
+
+            <p class="small-text">YOUR REFLECTIONS</p>
+
+            <h1>What you noticed</h1>
+
+            <div class="insight-card">
+
+                ${
+                    reflections.length === 0
+                        ? `
+                            <p class="focus-message">
+                                Your reflections will appear here.
+                            </p>
+                        `
+                        : reflections
+                            .slice()
+                            .reverse()
+                            .map(reflection => `
+                                <div class="reflection-item">
+
+                                    <p class="small-text">
+                                        ${reflection.date}
+                                    </p>
+
+                                    <p class="focus-message">
+                                        ${reflection.text}
+                                    </p>
+
+                                </div>
+                            `)
+                            .join("")
+                }
+
+            </div>
+
+            <button onclick="showReflectionWriter()">
+                ✍️ Write a Reflection
+            </button>
+
+            <button onclick="location.reload()">
+                Return to Dhyana
+            </button>
+
+        </div>
+    `;
+}
+function saveReflection() {
+
+    const input = document.getElementById("reflectionInput");
+
+    if (!input) {
+        console.error("Reflection input not found.");
+        return;
+    }
+
+    const text = input.value.trim();
+
+    if (text === "") {
+        alert("Write something before saving.");
+        return;
+    }
+
+    const reflections =
+        JSON.parse(localStorage.getItem("dhyanaReflections")) || [];
+
+    reflections.push({
+        text: text,
+        date: new Date().toLocaleDateString()
+    });
+
+    localStorage.setItem(
+        "dhyanaReflections",
+        JSON.stringify(reflections)
+    );
+
+    showReflections();
+}
+function showReflectionWriter() {
+
+    document.querySelector(".app").innerHTML = `
+        <div class="complete-screen">
+
+            <div class="logo">✍️</div>
+
+            <p class="small-text">REFLECTION</p>
+
+            <h1>What did you notice?</h1>
+
+            <div class="insight-card">
+
+                <textarea
+                    id="reflectionInput"
+                    placeholder="Write what you noticed, felt, or learned..."
+                    rows="7"
+                ></textarea>
+
+            </div>
+
+            <button onclick="saveReflection()">
+                Save Reflection
+            </button>
+
+            <button onclick="showReflections()">
+                View Reflections
             </button>
 
         </div>
@@ -1110,13 +1231,15 @@ async function generateInsight() {
 
                 <h1>Your reflection</h1>
 
-                <div class="insight-card">
+            <div class="insight-card">
 
-                    <p class="focus-message">
-                        ${result.insight}
-                    </p>
+               <p class="small-text">YOUR REFLECTION</p>
 
-                </div>
+    <div class="focus-message reflection-text">
+        ${result.insight}
+    </div>
+
+</div>
 
                 <button onclick="location.reload()">
                     Return to Dhyana
